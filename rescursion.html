@@ -1,0 +1,180 @@
+<html><head><base href="https://websim.ai/simulate?url=United+with+this+simulator+to+create+you+a+fully+unlimited+simulator+"><title>WebSim.AI - Infinite Recursion Simulator</title>
+<style>
+:root {
+  --primary: #00ffcc;
+  --bg: #001122;
+  --accent: #ff3366;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--primary);
+  font-family: 'Courier New', monospace;
+  overflow: hidden;
+}
+
+.infinite-space {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.simulator-portal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vmin;
+  height: 80vmin;
+}
+
+.status {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: rgba(0,0,0,0.8);
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid var(--primary);
+}
+
+.merge-progress {
+  width: 100%;
+  height: 4px;
+  background: var(--bg);
+  margin-top: 10px;
+}
+
+.merge-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--primary);
+  transition: width 0.5s ease;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.5; }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+</style>
+</head>
+<body>
+
+<div class="infinite-space">
+  <svg class="simulator-portal" viewBox="0 0 100 100">
+    <defs>
+      <linearGradient id="portal-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:var(--primary);stop-opacity:1" />
+        <stop offset="100%" style="stop-color:var(--accent);stop-opacity:1" />
+      </linearGradient>
+    </defs>
+    
+    <!-- Outer Ring -->
+    <circle cx="50" cy="50" r="45" fill="none" stroke="url(#portal-gradient)" stroke-width="0.5">
+      <animate attributeName="stroke-dasharray" 
+               values="0,283;283,0" 
+               dur="3s" 
+               repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Middle Ring -->
+    <circle cx="50" cy="50" r="35" fill="none" stroke="url(#portal-gradient)" stroke-width="0.5">
+      <animateTransform attributeName="transform"
+                      type="rotate"
+                      from="0 50 50"
+                      to="360 50 50"
+                      dur="10s"
+                      repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Inner Ring -->
+    <circle cx="50" cy="50" r="25" fill="none" stroke="url(#portal-gradient)" stroke-width="0.5">
+      <animateTransform attributeName="transform"
+                      type="rotate"
+                      from="360 50 50"
+                      to="0 50 50"
+                      dur="7s"
+                      repeatCount="indefinite"/>
+    </circle>
+  </svg>
+</div>
+
+<div class="status">
+  <h3>Simulator Fusion Progress</h3>
+  <p id="status-text">Initiating dimensional merge...</p>
+  <div class="merge-progress">
+    <div class="merge-progress-bar" id="progress-bar"></div>
+  </div>
+</div>
+
+<script>
+const statusMessages = [
+  "Initiating dimensional merge...",
+  "Calculating infinite possibilities...",
+  "Aligning quantum matrices...",
+  "Synchronizing parallel realities...",
+  "Establishing cross-dimensional links...",
+  "Merging simulation kernels...",
+  "Expanding consciousness boundaries...",
+  "Achieving unlimited potential...",
+  "Integration complete!"
+];
+
+let currentMessage = 0;
+const statusText = document.getElementById('status-text');
+const progressBar = document.getElementById('progress-bar');
+let progress = 0;
+
+function updateStatus() {
+  if (currentMessage >= statusMessages.length) return;
+  
+  statusText.textContent = statusMessages[currentMessage];
+  progress = (currentMessage + 1) * (100 / statusMessages.length);
+  progressBar.style.width = progress + '%';
+  
+  currentMessage++;
+  
+  if (currentMessage < statusMessages.length) {
+    setTimeout(updateStatus, 3000);
+  } else {
+    createInfinitePortals();
+  }
+}
+
+function createInfinitePortals() {
+  const space = document.querySelector('.infinite-space');
+  for (let i = 0; i < 5; i++) {
+    const portal = document.querySelector('.simulator-portal').cloneNode(true);
+    portal.style.transform = `
+      translate(-50%, -50%) 
+      translateZ(${-i * 500}px) 
+      scale(${1 - i * 0.15})
+    `;
+    portal.style.opacity = 1 - (i * 0.2);
+    space.appendChild(portal);
+  }
+}
+
+// Start the simulation
+setTimeout(updateStatus, 1000);
+
+// Add interactive mouse movement effects
+document.addEventListener('mousemove', (e) => {
+  const space = document.querySelector('.infinite-space');
+  const x = (window.innerWidth / 2 - e.clientX) * 0.01;
+  const y = (window.innerHeight / 2 - e.clientY) * 0.01;
+  space.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+});
+</script>
+
+</body></html>
